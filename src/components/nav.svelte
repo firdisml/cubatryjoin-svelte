@@ -3,13 +3,13 @@
 </script>
 
 <div class="min-h-full">
-	<Disclosure as="nav" class="bg-indigo-600">
+	<Disclosure as="nav" class="bg-emerald-400">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 			<div class="flex items-center justify-between h-16">
 				<div class="flex items-center">
 					<div class="flex flex-shrink-0">
 						<a href={'/'} class="text-white text-2xl lg:text-3xl mb-1">
-							<h1>CBJ</h1>
+							
 						</a>
 					</div>
 				</div>
@@ -17,7 +17,7 @@
 				<div class="hidden md:block">
 					<div class="ml-10 flex items-baseline space-x-4">
 						<button
-							class="flex text-white bg-indigo-500 hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-semibold"
+							class="flex mb-1 items-center justify-center gap-2 text-md  border-2 border-black bg-pink-200 px-4 py-2 font-semibold shadow-[3px_3px_0_0_#000] transition hover:shadow-none focus:outline-none active:bg-pink-50"
 						>
 							Submit Contest
 						</button>
@@ -27,7 +27,7 @@
 				<div class="-mr-2 flex md:hidden">
 					<DisclosureButton
 						let:open
-						class="bg-indigo-600 inline-flex items-center justify-center p-2 rounded-md text-indigo-200 hover:text-white hover:bg-indigo-500 hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-600 focus:ring-white"
+						class="flex items-center justify-center gap-2  border-2 border-black bg-pink-200 px-2 py-2 font-semibold shadow-[3px_3px_0_0_#000] transition hover:shadow-none focus:outline-none active:bg-pink-50"
 					>
 						{#if open}
 							<svg
@@ -64,12 +64,12 @@
 			<div class="px-2 pt-2 pb-3 space-y-3 sm:px-3">
 				<DisclosureButton
 					as="a"
-					class="flex text-white bg-indigo-500 hover:bg-opacity-75 px-3 py-3 rounded-md text-base font-semibold"
+					class="flex items-center justify-center gap-2  border-2 border-black bg-pink-200 px-2 py-2 font-semibold shadow-[3px_3px_0_0_#000] transition hover:shadow-none focus:outline-none active:bg-pink-50"
 					aria-current="page"
 				>
-					Browse Promotion
+					Submit Contest
 				</DisclosureButton>
 			</div>
-		</DisclosurePanel>s
+		</DisclosurePanel>
 	</Disclosure>
 </div>
