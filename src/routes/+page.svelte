@@ -2,7 +2,7 @@
 	import { createQuery } from '@tanstack/svelte-query';
 
 	const fetch_contests = async (skip: number) => {
-		const url = "https://contestapi.up.railway.app/api/contest?skip="+ skip +"&take=9";
+		const url = 'https://contestapi.up.railway.app/api/contest?skip=' + skip + '&take=9';
 		const res = await fetch(url);
 		const data = await res.json();
 		return data;
@@ -15,25 +15,22 @@
 		queryFn: () => fetch_contests(skip)
 	});
 
-    $: skip = start === 1 ? 0 : (start - 1) * 9;
+	$: skip = start === 1 ? 0 : (start - 1) * 9;
 
-    $: limit = Math.ceil($query?.data?.count  / 9);
-
+	$: limit = Math.ceil($query?.data?.count / 9);
 </script>
 
 <div class="px-4 py-1 sm:px-0 ">
-    {#if !$query?.data?.count}
-    <div></div>
-    {:else}
-    <div class=" relative flex items-center justify-between border-t border-gray-300 dark:border-gray-700 mt-4 mb-5"></div>
-    {/if}
+		<div
+			class=" relative flex items-center justify-between border-t border-gray-300 dark:border-gray-700 mt-4 mb-5"
+		/>
 	<div class="grid lg:grid-cols-3  md:grid-cols-2 sm:grid-cols-1 gap-3 mt-3">
 		{#if $query?.status === 'loading'}
-			<img class="mx-auto col-span-3" src="/spinner.svg" alt="">
+			<img class="mx-auto col-span-3" src="/spinner.svg" alt="" />
 		{:else if $query?.status === 'error'}
 			<span>Error</span>
-		{:else if $query?.data?.length === 0}
-			<span>Empty</span>
+		{:else if $query?.data?.data?.length === 0}
+			<span class="mx-auto col-span-3">No result Found</span>
 		{:else}
 			{#each $query?.data?.data as contest (contest.id)}
 				<div
@@ -67,37 +64,37 @@
 		{/if}
 	</div>
 
-    {#if !$query?.data?.count}
-    <div></div>
-    {:else}
-	<nav
-		class=" relative flex items-center justify-between border-t border-gray-300 dark:border-gray-700 mt-5 mb-5"
-	>
-        <div class="hidden sm:block">
-			<p class="text-sm text-black">
-				Showing <span class="font-medium">{skip+1}</span> to{' '}
-				<span class="font-medium"> {skip + $query?.data?.data?.length} </span>{' '}
-				of <span class="font-medium">{$query?.data?.count}</span>{' '}
-				results
-			</p>
-		</div>
+	{#if !$query?.data?.count}
+		<div class=" relative flex items-center justify-between border-t border-gray-300 dark:border-gray-700 mt-5 mb-5"/>
+	{:else}
+		<nav
+			class=" relative flex items-center justify-between border-t border-gray-300 dark:border-gray-700 mt-5 mb-5"
+		>
+			<div class="hidden sm:block">
+				<p class="text-sm text-black">
+					Showing <span class="font-medium">{skip + 1}</span> to{' '}
+					<span class="font-medium"> {skip + $query?.data?.data?.length} </span>{' '}
+					of <span class="font-medium">{$query?.data?.count}</span>{' '}
+					results
+				</p>
+			</div>
 
-		<div class="flex-1 flex justify-between sm:justify-end gap-x-2">
-			<button
-                on:click|preventDefault={() => start = start - 1}
-                disabled={start <= 1 || $query?.status === 'error' || $query?.status === 'loading'}
-				class="flex mt-5 items-center justify-center gap-2 text-md  border-2 border-black bg-pink-200 px-4 py-2 font-semibold shadow-[3px_3px_0_0_#000] transition hover:shadow-none focus:outline-none active:bg-pink-50"
-			>
-				Back
-			</button>
-			<button
-                disabled={start >= limit || $query?.status === 'error' || $query?.status === 'loading'}
-				on:click|preventDefault={() => start = start + 1}
-				class="flex mt-5 items-center justify-center gap-2 text-md  border-2 border-black bg-pink-200 px-4 py-2 font-semibold shadow-[3px_3px_0_0_#000] transition hover:shadow-none focus:outline-none active:bg-pink-50"
-			>
-				Next
-			</button>
-		</div>
-	</nav>
-    {/if}
+			<div class="flex-1 flex justify-between sm:justify-end gap-x-2">
+				<button
+					on:click|preventDefault={() => (start = start - 1)}
+					disabled={start <= 1 || $query?.status === 'error' || $query?.status === 'loading'}
+					class="flex mt-5 items-center justify-center gap-2 text-md  border-2 border-black bg-pink-200 px-4 py-2 font-semibold shadow-[3px_3px_0_0_#000] transition hover:shadow-none focus:outline-none active:bg-pink-50"
+				>
+					Back
+				</button>
+				<button
+					disabled={start >= limit || $query?.status === 'error' || $query?.status === 'loading'}
+					on:click|preventDefault={() => (start = start + 1)}
+					class="flex mt-5 items-center justify-center gap-2 text-md  border-2 border-black bg-pink-200 px-4 py-2 font-semibold shadow-[3px_3px_0_0_#000] transition hover:shadow-none focus:outline-none active:bg-pink-50"
+				>
+					Next
+				</button>
+			</div>
+		</nav>
+	{/if}
 </div>
