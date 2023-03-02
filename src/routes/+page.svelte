@@ -22,7 +22,11 @@
 </script>
 
 <div class="px-4 py-1 sm:px-0 ">
+    {#if !$query?.data?.count}
+    <div></div>
+    {:else}
     <div class=" relative flex items-center justify-between border-t border-gray-300 dark:border-gray-700 mt-4 mb-5"></div>
+    {/if}
 	<div class="grid lg:grid-cols-3  md:grid-cols-2 sm:grid-cols-1 gap-3 mt-3">
 		{#if $query?.status === 'loading'}
 			<img class="mx-auto col-span-3" src="/spinner.svg" alt="">
