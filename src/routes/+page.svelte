@@ -82,7 +82,7 @@
                 on:click|preventDefault={() => start = start - 1}
                 disabled={start <= 1 || $query?.status === 'error' || $query?.status === 'loading'}
 				class="flex mt-5 items-center justify-center gap-2 text-md  border-2 border-black bg-pink-200 px-4 py-2 font-semibold shadow-[3px_3px_0_0_#000] transition hover:shadow-none focus:outline-none active:bg-pink-50"
-			>s
+			>
 				Back
 			</button>
 			<button
