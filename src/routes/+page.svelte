@@ -38,15 +38,15 @@
 						<h1 class="text-md font-semibold tracking-wider text-black truncate block">
 							{contest.title}
 						</h1>
-						<div class="flex text-sm font-medium text-gray-500 dark:text-gray-800 mt-3">
+						<div class="flex text-sm font-medium text-black mt-3">
 							<img src="bulb.svg" alt="bulv" class="w-6 h-6 mr-2" />
 							<p class="mt-1">{contest.organizer}</p>
 						</div>
-						<div class="flex text-sm font-medium text-gray-500 dark:text-gray-800 mt-3">
+						<div class="flex text-sm font-medium text-black mt-3">
 							<img src="date.svg" alt="bulv" class="w-5 h-5 ml-1 mr-2" />
 							<p>Start @ 13 February 2023</p>
 						</div>
-						<div class="flex text-sm font-medium text-gray-500 dark:text-gray-800 mt-3">
+						<div class="flex text-sm font-medium text-black mt-3">
 							<img src="end.svg" alt="bulv" class="w-6 h-6 ml-0.5 mr-2" />
 							<p>End @ 23 February 2023</p>
 						</div>
