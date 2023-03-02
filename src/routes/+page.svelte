@@ -21,8 +21,9 @@
 
 </script>
 
-<div class="px-4 py-4 sm:px-0">
-	<div class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-12 mt-3">
+<div class="px-4 py-1 sm:px-0 ">
+    <div class=" relative flex items-center justify-between border-t border-gray-300 dark:border-gray-700 mt-4 mb-5"></div>
+	<div class="grid lg:grid-cols-3  md:grid-cols-2 sm:grid-cols-1 gap-3 mt-3">
 		{#if $query?.status === 'loading'}
 			<img class="mx-auto col-span-3" src="/spinner.svg" alt="">
 		{:else if $query?.status === 'error'}
@@ -66,7 +67,7 @@
     <div></div>
     {:else}
 	<nav
-		class="py-3 relative flex items-center justify-between border-t border-gray-300 dark:border-gray-700 mt-12"
+		class=" relative flex items-center justify-between border-t border-gray-300 dark:border-gray-700 mt-5 mb-5"
 	>
         <div class="hidden sm:block">
 			<p class="text-sm text-black">
