@@ -8,9 +8,11 @@
 			<div class="flex items-center justify-between h-16">
 				<div class="flex items-center">
 					<div class="flex flex-shrink-0">
-						<a href={'/'} class="text-white text-2xl lg:text-3xl mb-1">
-							
-						</a>
+						<div
+							class="flex mb-1 items-center justify-center gap-2 text-md  rounded-full border-2 border-black bg-white px-4 py-2 font-semibold shadow-[3px_3px_0_0_#000] transition focus:outline-none active:bg-pink-200"
+						>
+							<img src="/bulb.svg" alt="" class="h-6 w-6">  Cuba Try Join
+						</div>
 					</div>
 				</div>
 
