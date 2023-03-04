@@ -12,7 +12,7 @@
 
 	let order_status = false;
 
-	$: order = order_status ? "asc" : "desc";
+	$: order = order_status ? "desc" : "asc";
 
 
 	$: query = createQuery({
