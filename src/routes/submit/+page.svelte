@@ -2,9 +2,8 @@
 	import dayjs from 'dayjs';
 	import { Datepicker } from 'svelte-calendar';
 
-	let store:any;
-
-
+	let store_start:any;
+    let store_end:any;
 </script>
 
 
@@ -75,15 +74,34 @@
                 Start Date
             </label>
             
-            <Datepicker bind:store let:key let:send let:receive>
-                <button type="button" class="flex mb-1 items-center justify-center gap-2 text-md  border-2 border-black bg-white px-4 py-2 font-semibold shadow-[3px_3px_0_0_#000] transition hover:shadow-none focus:outline-none active:bg-white" in:receive|local={{ key }} out:send|local={{ key }}>
-                    {#if $store?.hasChosen}
-                        {dayjs($store.selected).format('ddd MMM D, YYYY')}
+            <Datepicker bind:store={store_start} let:key let:send let:receive>
+                <button type="button" class="flex mb-1 w-full items-center justify-center gap-2 text-md  border-2 border-black bg-white px-4 py-2 font-semibold shadow-[3px_3px_0_0_#000] transition hover:shadow-none focus:outline-none active:bg-white" in:receive|local={{ key }} out:send|local={{ key }}>
+                    {#if $store_start?.hasChosen}
+                        {dayjs($store_start.selected).format('ddd MMM D, YYYY')}
                     {:else}
                         Pick a Date
                     {/if}
                 </button>
             </Datepicker>
+
+
+            <label
+                for="link"
+                class="flex text-black text-md font-bold -mb-3"
+            >
+                End Date
+            </label>
+            
+            <Datepicker bind:store={store_end} let:key let:send let:receive>
+                <button type="button" class="flex mb-1 items-center justify-center gap-2 text-md  border-2 border-black bg-white px-4 py-2 font-semibold shadow-[3px_3px_0_0_#000] transition hover:shadow-none focus:outline-none active:bg-white" in:receive|local={{ key }} out:send|local={{ key }}>
+                    {#if $store_end?.hasChosen}
+                        {dayjs($store_end.selected).format('ddd MMM D, YYYY')}
+                    {:else}
+                        Pick a Date
+                    {/if}
+                </button>
+            </Datepicker>
+
 
         
 
