@@ -12,7 +12,7 @@
 
 	let order_status = false;
 
-	$: order = order_status ? "desc" : "asc";
+	$: order = order_status ? "asc" : "desc";
 
 
 	$: query = createQuery({
@@ -45,7 +45,7 @@
 		viewBox="0 0 24 24"
 		stroke-width="1.5"
 		stroke="currentColor"
-		class="w-5 h-5 rotate-180"
+		class="w-5 h-5 "
 	>
 		<path
 			stroke-linecap="round"
@@ -60,7 +60,7 @@
 		viewBox="0 0 24 24"
 		stroke-width="1.5"
 		stroke="currentColor"
-		class="w-5 h-5"
+		class="w-5 h-5 rotate-180"
 	>
 		<path
 			stroke-linecap="round"
