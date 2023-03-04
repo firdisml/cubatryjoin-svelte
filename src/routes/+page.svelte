@@ -2,7 +2,7 @@
 	import { createQuery } from '@tanstack/svelte-query';
 
 	const fetch_contests = async (skip: number) => {
-		const url = 'https://contestapi.up.railway.app/api/contest?skip=' + skip + '&take=9';
+		const url = 'https://contestapi.up.railway.app/api/contest?skip=' + skip + '&take=9&order=desc';
 		const res = await fetch(url);
 		const data = await res.json();
 		return data;
