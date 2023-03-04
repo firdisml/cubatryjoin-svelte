@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { createQuery } from '@tanstack/svelte-query';
 
-	const fetch_contests = async (skip: number) => {
-		const url = 'https://contestapi.up.railway.app/api/contest?skip=' + skip + '&take=9&order=desc';
+	const fetch_contests = async (skip: number, order:string) => {
+		const url = 'https://contestapi.up.railway.app/api/contest?skip=' + skip + '&take=9&order='+ order;
 		const res = await fetch(url);
 		const data = await res.json();
 		return data;
@@ -10,9 +10,14 @@
 
 	let start = 1;
 
+	let order_status = false;
+
+	$: order = order_status ? "asc" : "desc";
+
+
 	$: query = createQuery({
-		queryKey: [start],
-		queryFn: () => fetch_contests(skip)
+		queryKey: [start, order],
+		queryFn: () => fetch_contests(skip, order)
 	});
 
 	$: skip = start === 1 ? 0 : (start - 1) * 9;
@@ -28,26 +33,42 @@
 
     {#if !$query?.data?.count}
     <p />
-{:else}
+	{:else}
     <button
-        disabled={start >= limit || $query?.status === 'error' || $query?.status === 'loading'}
-        on:click|preventDefault={() => (start = start + 1)}
+        on:click|preventDefault={() => (order_status = !order_status)}
         class="flex items-center justify-center gap-2 text-md mb-5 border-2 border-black bg-pink-200 px-4 py-2 font-semibold shadow-[3px_3px_0_0_#000] transition hover:shadow-none focus:outline-none active:bg-pink-50"
     >
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="w-5 h-5"
-        >
-            <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M12 19.5v-15m0 0l-6.75 6.75M12 4.5l6.75 6.75"
-            />
-        </svg>
+		{#if order_status}
+		<svg
+		xmlns="http://www.w3.org/2000/svg"
+		fill="none"
+		viewBox="0 0 24 24"
+		stroke-width="1.5"
+		stroke="currentColor"
+		class="w-5 h-5 "
+	>
+		<path
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			d="M12 19.5v-15m0 0l-6.75 6.75M12 4.5l6.75 6.75"
+		/>
+	</svg>
+		{:else}
+		<svg
+		xmlns="http://www.w3.org/2000/svg"
+		fill="none"
+		viewBox="0 0 24 24"
+		stroke-width="1.5"
+		stroke="currentColor"
+		class="w-5 h-5 rotate-180"
+	>
+		<path
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			d="M12 19.5v-15m0 0l-6.75 6.75M12 4.5l6.75 6.75"
+		/>
+	</svg>
+		{/if}
         Date
     </button>
 {/if}
