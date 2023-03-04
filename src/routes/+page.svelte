@@ -36,7 +36,7 @@
 	{:else}
     <button
         on:click|preventDefault={() => (order_status = !order_status)}
-        class="flex items-center justify-center gap-2 text-md mb-5 border-2 border-black bg-pink-200 px-4 py-2 font-semibold shadow-[3px_3px_0_0_#000] transition hover:shadow-none focus:outline-none active:bg-pink-50"
+        class="flex items-center justify-center gap-2 text-md mb-5 border-2 border-black bg-emerald-400 px-4 py-2 font-semibold shadow-[3px_3px_0_0_#000] transition hover:shadow-none focus:outline-none active:bg-pink-50"
     >
 		{#if order_status}
 		<svg
