@@ -1,16 +1,47 @@
 <script lang="ts">
 	import dayjs from 'dayjs';
 	import { Datepicker } from 'svelte-calendar';
-
+	import toast from 'svelte-french-toast';
+	import { goto } from '$app/navigation';
+	let result = null;
+	let title: any = null;
+	let organizer: any = null;
+	let link: any = null;
 	let store_start: any;
 	let store_end: any;
+
+	async function submit_contest() {
+		const res = await fetch('https://contestapi.up.railway.app/api/contest/post', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				title: 'sssss',
+				organizer: 'sssss',
+				link: 'sssss',
+				start: $store_start.selected,
+				end: $store_end.selected
+			})
+		});
+	}
+
+	async function handleClick() {
+		await toast.promise(submit_contest(), {
+			loading: 'Submitting',
+			success: 'Contest submitted!',
+			error: 'Could not submit!'
+		});
+
+		goto('/');
+	}
 </script>
 
 <div class="px-4 py-4 sm:px-0">
 	<div
 		class="gap-2 text-md border-2 border-black bg-pink-200 font-semibold shadow-[3px_3px_0_0_#000] overflow-visible mt-5"
 	>
-		<form class=" flex flex-col px-4 py-5 sm:p-6 gap-y-5">
+		<form class=" flex flex-col px-4 py-5 sm:p-6 gap-y-5" on:submit={handleClick}>
 			<div class="col-span-6">
 				<label for="title" class="flex  text-black text-md font-bold"> Title </label>
 				<input
