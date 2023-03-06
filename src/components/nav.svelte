@@ -10,7 +10,7 @@
 					<div class="flex flex-shrink-0">
 						<a
 							href="/"
-							class="flex mb-1 items-center justify-center gap-2 text-md  rounded-full border-2 border-black bg-white px-4 py-2 font-semibold shadow-[3px_3px_0_0_#000] transition focus:outline-none active:bg-pink-200"
+							class="flex mb-1 items-center justify-center gap-2 text-md  rounded-full border-2 border-black bg-white px-4 py-2 font-semibold  transition focus:outline-none active:bg-pink-200"
 						>
 							<img src="/bulb.svg" alt="" class="h-6 w-6">  Cuba Try Join
 						</a>

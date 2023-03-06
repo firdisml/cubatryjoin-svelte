@@ -11,15 +11,15 @@
 	let store_end: any;
 
 	async function submit_contest() {
-		const res = await fetch('https://contestapi.up.railway.app/api/contest/post', {
+		await fetch('https://contestapi.up.railway.app/api/contest/post', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				title: 'sssss',
-				organizer: 'sssss',
-				link: 'sssss',
+				title: title,
+				organizer: organizer,
+				link: link,
 				start: $store_start.selected,
 				end: $store_end.selected
 			})
@@ -48,6 +48,7 @@
 					type="text"
 					name="title"
 					maxLength={30}
+                    bind:value={title}
 					id="title"
 					required
 					placeholder="Contest's Title"
@@ -62,6 +63,7 @@
 					name="organizer"
 					maxLength={30}
 					id="organizer"
+                    bind:value={organizer}
 					required
 					placeholder="Contest's Organizer"
 					class="mt-2 block text-black py-2.5 px-3 w-full text-md font-normal border-2 border-black focus:outline-none focus:ring-black"
@@ -73,8 +75,8 @@
 				<input
 					type="text"
 					name="link"
-					maxLength={30}
 					id="link"
+                    bind:value={link}
 					required
 					placeholder="Contest's Link"
 					class="mt-2 block text-black py-2.5 px-3 w-full text-md font-normal border-2 border-black focus:outline-none focus:ring-black"

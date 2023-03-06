@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createQuery } from '@tanstack/svelte-query';
-
+	import dayjs from 'dayjs'
 	const fetch_contests = async (skip: number, order:string) => {
 		const url = 'https://contestapi.up.railway.app/api/contest/get?skip=' + skip + '&take=9&order='+ order;
 		const res = await fetch(url);
@@ -95,18 +95,19 @@
 						</div>
 						<div class="flex text-sm font-medium text-black mt-3">
 							<img src="date.svg" alt="bulv" class="w-5 h-5 ml-1 mr-2" />
-							<p>Start @ 13 February 2023</p>
+							<p>Start @ {dayjs(contest.start).format('DD MMMM YYYY')}</p>
 						</div>
 						<div class="flex text-sm font-medium text-black mt-3">
 							<img src="end.svg" alt="bulv" class="w-6 h-6 ml-0.5 mr-2" />
-							<p>End @ 23 February 2023</p>
+							<p>End @ {dayjs(contest.end).format('DD MMMM YYYY')}</p>
 						</div>
 
-						<button
+						<a
+							href={contest.link}
 							class="flex mt-5 items-center justify-center gap-2 text-md  border-2 border-black bg-emerald-400 px-4 py-2 font-semibold shadow-[3px_3px_0_0_#000] transition hover:shadow-none focus:outline-none active:bg-pink-50"
 						>
 							Join Contest
-						</button>
+						</a>
 					</div>
 				</div>
 			{/each}
