@@ -98,7 +98,7 @@ const onCaptchaClose = (event:any) => {
 	<div
 		class="gap-2 text-md border-2 border-black bg-pink-200 font-semibold shadow-[3px_3px_0_0_#000] overflow-visible mt-5"
 	>
-		<form class=" flex flex-col px-4 py-5 sm:p-6 gap-y-5" on:submit|preventDefault={submitHandler}>
+		<form class=" flex flex-col -mt-5 px-4 py-5 sm:p-6 gap-y-5" on:submit|preventDefault={submitHandler}>
 			<Recaptcha
 				sitekey="6Ld4fNokAAAAAAumiV2NatsK9LOxbha_L-E7TVe4"
 			    on:success={onCaptchaSuccess}
