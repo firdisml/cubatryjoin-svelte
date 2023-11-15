@@ -14,8 +14,8 @@
 	let store_start: any;
 	let store_end: any;
 
-	async function submit_contest() {
-		await fetch('https://o02lga290c.execute-api.us-east-1.amazonaws.com/dev/post', {
+	async function submit_contest(token:string) {
+		await fetch('https://localhost:7134/api/contest/post', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -24,14 +24,15 @@
 				title: title,
 				organizer: organizer,
 				link: link,
+				token: token,
 				start: $store_start.selected,
 				end: $store_end.selected
 			})
 		});
 	}
 
-	async function handleClick() {
-		await toast.promise(submit_contest(), {
+	async function handleClick(token:string) {
+		await toast.promise(submit_contest(token), {
 			loading: 'Submitting',
 			success: 'Contest submitted!',
 			error: 'Could not submit!'
@@ -40,13 +41,74 @@
 		goto('/');
 	}
 
+	const submitHandler = async () => {
+    recaptcha.execute();
+};
+
+const onCaptchaReady = (event:any) => {
+    console.log("recaptcha init has completed.")
+    /*
+     │You can enable your form button here.
+     */
+};
+
+const onCaptchaSuccess = (event:any) => {
+    const token = event.detail.token
+	handleClick(token)
+    /*
+     │If using checkbox method, you can attach your
+     │form logic here, or dispatch your custom event.
+     */
+};
+
+const onCaptchaError = (event:any) => {
+    console.log("recaptcha init has failed.");
+    /*
+     │Usually due to incorrect siteKey.
+     |Make sure you have the correct siteKey..
+     */
+};
+
+const onCaptchaExpire = (event:any) => {
+    console.log("recaptcha api has expired");
+    /*
+     │Normally, you wouldn't need to do anything.
+     │Recaptcha should reinit itself automatically.
+     */
+};
+
+const onCaptchaOpen = (event:any) => {
+    console.log("google decided to challange the user");
+    /*
+     │This fires when the puzzle frame pops.
+     */
+};
+
+const onCaptchaClose = (event:any) => {
+    console.log("google decided to challange the user");
+    /*
+     │This fires when the puzzle frame closes.
+     │Usually happens when the user clicks outside
+     |the modal frame.
+     */
+};
 </script>
 
 <div class="px-4 py-4 sm:px-0">
 	<div
 		class="gap-2 text-md border-2 border-black bg-pink-200 font-semibold shadow-[3px_3px_0_0_#000] overflow-visible mt-5"
 	>
-		<form class=" flex flex-col -mt-5 px-4 py-5 sm:p-6 gap-y-5" on:submit|preventDefault={handleClick}>
+		<form class=" flex flex-col -mt-5 px-4 py-5 sm:p-6 gap-y-5" on:submit|preventDefault={submitHandler}>
+			<Recaptcha
+				sitekey="6Ld4fNokAAAAAAumiV2NatsK9LOxbha_L-E7TVe4"
+			    on:success={onCaptchaSuccess}
+    on:error={onCaptchaError}
+    on:expired={onCaptchaExpire}
+    on:close={onCaptchaClose}
+    on:ready={onCaptchaReady} />
+
+
+
 			<div class="col-span-6">
 				<label for="title" class="flex  text-black text-md font-bold"> Title </label>
 				<input
