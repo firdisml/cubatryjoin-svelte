@@ -2,7 +2,7 @@
 	import { createQuery } from '@tanstack/svelte-query';
 	import dayjs from 'dayjs'
 	const fetch_contests = async (skip: number, order:string) => {
-		const url = 'https://localhost:7134/api/contest/get?skip=' + skip + '&take=9&order='+ order;
+		const url = 'https://contestapi-production.up.railway.app/api/contest/get?skip=' + skip + '&take=9&order='+ order;
 		const res = await fetch(url);
 		const data = await res.json();
 		return data;

@@ -15,7 +15,7 @@
 	let store_end: any;
 
 	async function submit_contest(token:string) {
-		await fetch('https://localhost:7134/api/contest/post', {
+		await fetch('https://contestapi-production.up.railway.app/api/contest/post', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
